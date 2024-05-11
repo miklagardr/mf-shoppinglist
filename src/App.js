@@ -43,7 +43,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* {login ? 
+        {login ? 
         <>
         <Route path="/" element={<Home />}/>
         <Route path="/home"  element={<Home />}/>
@@ -63,16 +63,7 @@ function App() {
           <Route path='/cart' element={<LoginPage />}/>
           <Route path="/signup" element={<SignUp />}/>
         </>
-        } */}
-        <Route path="/" element={<LoginPage />}/>
-        <Route path="/home"  element={<Home />}/>
-        <Route path="/products" element={<Products/>} />
-        <Route path='/categories' element={<Categories/>} />
-        <Route path='/cart' element={<Cart />}/>
-        <Route path='/singleproduct/:productID' element={<SingleProduct/>}/>
-        <Route path='/products/:category' element={<CategoriesListPage/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/editprofile' element={<EditProfile/>}/>
+        }
       </Routes>
     </Router>
   );
