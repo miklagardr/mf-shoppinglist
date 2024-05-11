@@ -32,6 +32,7 @@ function App() {
         dispatch(fetchOrderList(userResult.username));
       } catch (error) {
         console.error('Error fetching user data:', error);
+        console.log('User not logged in');
       }
     };
 
