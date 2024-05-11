@@ -13,7 +13,7 @@ const categoriesSlice = createSlice({
         }); 
         builders.addCase(fetchCategories.rejected , (state,action) => {
             state.error = true; 
-        });
+        });  
     }
 })
 export const categoriesReducer = categoriesSlice.reducer;
