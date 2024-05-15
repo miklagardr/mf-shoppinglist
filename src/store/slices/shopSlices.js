@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {addOrderList, createOrderList , fetchOrderList , deleteOrderList } from '../thunks/orderList'
+import {addOrderList, createOrderList , fetchOrderList , deleteOrderList , createOrder } from '../thunks/orderList'
 const shopSlices = createSlice({
     name : 'shop', 
     initialState : {
@@ -63,6 +63,11 @@ const shopSlices = createSlice({
             state.shop = action.payload.products;
             state.totalAmount = action.payload.ordertotalprice;
         });
+        builders.addCase(createOrder.fulfilled , (state,action) => {
+            state.shop = [];
+            state.totalAmount = 0; 
+
+        })
     },
    })
 

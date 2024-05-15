@@ -96,7 +96,9 @@ function Cart() {
               Total Order : {totalAmount}
             </div>
             <div className="flex justify-end mt-2">
-              <button className="mt-4 rounded-2xl text-center border bg-blue-200 justify-center cursor-pointer p-3">
+              <button onClick={() => {
+                navigate("/payment")
+              }} className="mt-4 rounded-2xl text-center border bg-blue-200 justify-center cursor-pointer p-3 hover:bg-red-200 transition duration-500">
                 Complete the order
               </button>
             </div>

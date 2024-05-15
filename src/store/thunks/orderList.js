@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiBaseUrl ='https://shoppinglist-production.up.railway.app'
+import { apiBaseUrl } from "../../apiBaseUrl";
 
-export const createOrderList = createAsyncThunk('order/createOrder', async (order) =>   {
+export const createOrderList = createAsyncThunk('order/createOrderList', async (order) =>   {
     console.log('API Request Data:', order.ordertotalprice)
     const response = await axios.post(`${apiBaseUrl}/orderlist/create` , {
         username : order.username,
@@ -57,5 +57,16 @@ export const deleteOrderList = createAsyncThunk('order/deleteOrderList' , async 
         }
     })
     
+    return response.data
+})
+
+export const createOrder = createAsyncThunk('order/createOrder', async (order) =>   {
+
+    const response = await axios.post(`${apiBaseUrl}/order/createOrder` ,order,
+    { 
+        headers:{
+            'Content-Type' : 'application/json', 
+        },
+    })
     return response.data
 })

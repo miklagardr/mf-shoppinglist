@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiBaseUrl ='https://shoppinglist-production.up.railway.app'
+import { apiBaseUrl } from "../../apiBaseUrl";
 
 export const fetchUser = createAsyncThunk('user/fetch', async() => {
     const response = await axios.get(`${apiBaseUrl}/user/getUser` , {

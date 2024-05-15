@@ -4,6 +4,7 @@ import { shopReducer } from "./slices/shopSlices";
 import { productsReducer } from "./slices/productsSlice";
 import { userReducer } from "./slices/userSlice"; 
 import { categoriesReducer } from "./slices/categoriesSlice";
+import { allUsersReducer } from "./slices/allUsersSlice";
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
         shop : shopReducer,
         user : userReducer, 
         categories : categoriesReducer,
+        users : allUsersReducer,
     }
 })
 
@@ -25,3 +27,5 @@ export * from './thunks/logoutUser';
 export * from './thunks/fetchUser';
 export * from './thunks/orderList';
 export * from './thunks/editUser';
+export * from './thunks/fetchAllUser'; 
+export * from './thunks/deleteUserByAdmin'; 

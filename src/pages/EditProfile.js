@@ -60,16 +60,6 @@ export default function EditProfile() {
     }
   };
 
-  React.useEffect(() => {
-    if (deleteModal) {
-      document.addEventListener("click", handleClickOutsideModal);
-    } else {
-      document.removeEventListener("click", handleClickOutsideModal);
-    }
-    return () => {
-      document.removeEventListener("click", handleClickOutsideModal);
-    };
-  }, [deleteModal]);
 
   const handleDelete = () => {
     dispatch(deleteUser(user)).unwrap().then(() => {

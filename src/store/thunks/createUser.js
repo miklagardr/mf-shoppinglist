@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { apiBaseUrl } from '../../apiBaseUrl';
 
-const apiBaseUrl ='https://shoppinglist-production.up.railway.app'
 
 export const createUser = async (Username,Email,Password,Membership) => {
   try {

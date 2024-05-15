@@ -7,13 +7,14 @@ import LoginPage from './pages/LoginPage';
 import SignUp from './pages/SignUp';
 import Categories from './pages/Categories';
 import SingleProduct from './pages/SingleProduct';
-import { UseSelector, useSelector } from 'react-redux';
-import { GiHomeGarage } from 'react-icons/gi';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchOrderList, fetchProducts, fetchUser } from './store';
+import { fetchOrderList, fetchUser } from './store';
 import CategoriesListPage from './pages/CategoriesListPage';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import AdminPage from './Admin/AdminPage';
+import Payment from './pages/Payment';
 function App() {
   const {login } = useSelector((state)=>{
     return ({
@@ -54,6 +55,8 @@ function App() {
         <Route path='/products/:category' element={<CategoriesListPage/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/editprofile' element={<EditProfile/>}/>
+        <Route path='/payment' element={<Payment/>}/>
+        <Route path='/admin' element={<AdminPage/>}/>
         </> :
         <>
           <Route path="/"  element={<LoginPage />}/>

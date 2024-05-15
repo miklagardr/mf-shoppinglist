@@ -23,31 +23,32 @@ const formik = useFormik({
     const errors = {};
 
     if (!values.username) {
-      errors.username = 'Kullanıcı adı zorunludur';
+      errors.username = 'Username is required';
     }
 
     if (!values.email) {
-      errors.email = 'E-posta zorunludur';
+      errors.email = 'Email is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Geçerli bir e-posta adresi giriniz';
+      errors.email = 'Please enter valid email';
     }
 
     if (!values.password) {
-      errors.password = 'Şifre zorunludur';
+      errors.password = 'Password is required';
     }
 
     if (!values.confirmPassword) {
-      errors.confirmPassword = 'Şifreyi onaylamak zorunludur';
+      errors.confirmPassword = 'Password confirm is required';
     } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = 'Şifreler uyuşmuyor';
+      errors.confirmPassword = 'Passwords not matched';
     }
     return errors;
   },
   onSubmit:  (values) => {
-    if( values.membership === 'false') {
-      values.membership = false
-    } else {
-      values.membership = true
+    if(values.membership === 'premium') {
+      values.membership = true;
+    
+    }else{
+      values.membership = false;
     }
     createUser(values.username, values.email, values.password, values.membership)
     .then((response) => {
@@ -124,8 +125,8 @@ return (
             value={formik.values.membership}
             className='w-full border p-3 rounded focus:outline-none focus:border-blue-500'
           >
-            <option value={false}>Free</option>
-            <option value={true}>Premium</option>
+            <option value='free'>Free</option>
+            <option value='premium'>Premium</option>
           </select>
         </div>
         <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600 transition duration-300'>Sign Up</button>
