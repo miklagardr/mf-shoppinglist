@@ -70,3 +70,13 @@ export const createOrder = createAsyncThunk('order/createOrder', async (order) =
     })
     return response.data
 })
+
+
+export const fetchOrder = createAsyncThunk('order/fetchOrder', async (username) => {
+    const response = await axios.get(`${apiBaseUrl}/order/getOrders/${username}` , {
+        headers:{
+            'Content-Type' : 'application/json', 
+        }
+    })
+    return response.data 
+})

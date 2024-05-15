@@ -4,7 +4,7 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
 
 
-const CreditCard = () => {
+const CreditCard = ({setPay}) => {
   const [state, setState] = useState({
     number: '',
     expiry: '',
@@ -12,18 +12,11 @@ const CreditCard = () => {
     name: '',
     focus: '',
   });
+
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-
-    if (name === 'name') {
-      if (!/^[a-zA-Z]*$/.test(value)) {
-        return;
-      }
-    } else {
-      if (!/^\d*$/.test(value)) {
-        return;
-      }
-    }
+    
+   
     setState((prev) => ({ ...prev, [name]: value }));
   }
   
@@ -32,6 +25,16 @@ const CreditCard = () => {
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault() 
+    if(state.number && state.expiry && state.cvc && state.name) {
+      setPay(true)
+    }
+
+  }
+ 
 
   return (
     <div>
@@ -42,7 +45,7 @@ const CreditCard = () => {
         name={state.name}
         focused={state.focus}
       />
-      <form className='grid border p-5 rounded-lg mt-5 gap-3'>
+      <form onSubmit={handleSubmit} className='grid border p-5 rounded-lg mt-5 gap-3'>
         <input
           type="text"
           name="number"
@@ -81,7 +84,7 @@ const CreditCard = () => {
           onFocus={handleInputFocus}
           maxLength="28"
         />
-       
+        <button className='bg-blue-500 rounded-full w-fit p-3 flex justify-center' type="submit">Submit</button>
       </form>
     </div>
   );

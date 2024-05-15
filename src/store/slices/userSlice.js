@@ -3,12 +3,14 @@ import { loginUser } from "../thunks/loginUser";
 import { logoutUser } from "../thunks/logoutUser";
 import { fetchUser } from "../thunks/fetchUser";
 import { deleteUser } from "../thunks/editUser";
+import { fetchOrder } from "../thunks/orderList";
 
 
 const userSlice = createSlice({
     name : 'user', 
     initialState : {
         user : {}, 
+        orders : [], 
         error : '', 
         redirect : false,
         login : false,
@@ -54,6 +56,9 @@ const userSlice = createSlice({
         state.login = false; 
         state.error = action.error; 
        });
+       builders.addCase(fetchOrder.fulfilled , (state,action) => {
+        state.orders = action.payload; 
+       })
 }
 
 })

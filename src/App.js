@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import AdminPage from './Admin/AdminPage';
 import Payment from './pages/Payment';
+import MyOrders from './pages/MyOrders';
 function App() {
   const {login } = useSelector((state)=>{
     return ({
@@ -56,6 +57,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/editprofile' element={<EditProfile/>}/>
         <Route path='/payment' element={<Payment/>}/>
+        <Route path='/orders' element={<MyOrders/>}/>
         <Route path='/admin' element={<AdminPage/>}/>
         </> :
         <>
