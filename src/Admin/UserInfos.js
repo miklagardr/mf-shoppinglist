@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUser , deleteUserByAdmin } from "../store";
+import { getAllUser, deleteUserByAdmin } from "../store";
 import { LiaTimesSolid } from "react-icons/lia";
-
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 function UserInfos() {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+  const [dropDown, setDropdown] = useState(false);
   const [deletedUser, setDeletedUser] = useState("");
   const { users, user } = useSelector((state) => {
     return {
@@ -17,7 +18,7 @@ function UserInfos() {
   });
   useEffect(() => {
     dispatch(getAllUser(user.username));
-  },[]);
+  }, []);
 
   const handleClickOutsideModal = (e) => {
     if (e.target.classList.contains("bg-gray-500")) {
@@ -26,15 +27,19 @@ function UserInfos() {
   };
 
   const handleDeleteUserAccount = () => {
-    dispatch(deleteUserByAdmin({username : user.username, userusername : deletedUser}))
-    .unwrap()
-    .then(() => {
-        setDeletedUser("")
-        setModal(false)
-    })
+    dispatch(
+      deleteUserByAdmin({ username: user.username, userusername: deletedUser })
+    )
+      .unwrap()
+      .then(() => {
+        setDeletedUser("");
+        setModal(false);
+      });
   };
 
-
+  const handleOpenModal = () => {
+    setDropdown(!dropDown);
+  };
 
   const renderedUsers = users.map((suser, index) => {
     return (
@@ -61,39 +66,49 @@ function UserInfos() {
   });
 
   return (
-  
-      <div className="container my-3">
-        {renderedUsers}
-        {modal && (
+    <div className="container my-3">
+      <div
+        className="border bg-gray-100 p-5 flex justify-between mb-4"
+        onClick={handleOpenModal}
+      >
+        <div></div>
+        <h2 className="text-xl text-center">User Informations</h2>
+        <div className="text-3xl">
+          {!dropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        </div>
+      </div>
+      {dropDown &&  renderedUsers }
+
+      {modal && (
+        <div
+          className="fixed top-0 left-0 h-screen w-screen bg-gray-500 bg-opacity-50 flex items-center justify-center"
+          onClick={handleClickOutsideModal}
+        >
           <div
-            className="fixed top-0 left-0 h-screen w-screen bg-gray-500 bg-opacity-50 flex items-center justify-center"
-            onClick={handleClickOutsideModal}
+            className="bg-white p-8 rounded-md"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className="bg-white p-8 rounded-md"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 className="text-center text-2xl">
-                Are you sure you want to delete this user's account?
-              </h2>
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={handleDeleteUserAccount}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md mt-2"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={() => setModal(false)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2 ml-2"
-                >
-                  Cancel
-                </button>
-              </div>
+            <h2 className="text-center text-2xl">
+              Are you sure you want to delete this user's account?
+            </h2>
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={handleDeleteUserAccount}
+                className="bg-red-500 text-white px-4 py-2 rounded-md mt-2"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => setModal(false)}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2 ml-2"
+              >
+                Cancel
+              </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
   );
 }
 

@@ -28,4 +28,4 @@ export * from './thunks/fetchUser';
 export * from './thunks/orderList';
 export * from './thunks/editUser';
 export * from './thunks/fetchAllUser'; 
-export * from './thunks/deleteUserByAdmin'; 
+export * from './thunks/admin'; 
