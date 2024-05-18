@@ -27,6 +27,7 @@ function UploadPhoto() {
 
 
       const handleFormSubmit = (event) => {
+        event.preventDefault();
         const formData = new FormData();
         formData.append('productImg', selectedFile);
         dispatch(uploadPhoto(formData));
