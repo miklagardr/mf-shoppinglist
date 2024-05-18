@@ -14,7 +14,8 @@ export const getAllOrders = createAsyncThunk('admin/getOrders' , async() => {
     return response.data; 
 })
 
-export const uploadPhoto = createAsyncThunk('media/uploadPhoto' , async(formData) => {
-    const response = await axios.post(`${apiBaseUrl}/media/uploadProductImg` , formData)
+export const addProduct = createAsyncThunk('admin/addNewProduct' , async(product) => {
+    console.log('API Request Data:', product)
+    const response = await axios.post(`${apiBaseUrl}/admin/addNewProduct` , product)
     return response.data; 
 })
