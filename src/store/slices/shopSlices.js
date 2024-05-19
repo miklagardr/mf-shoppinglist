@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {addOrderList, createOrderList , fetchOrderList , deleteOrderList , createOrder } from '../thunks/orderList'
+import { logoutUser } from "../thunks/logoutUser";
 const shopSlices = createSlice({
     name : 'shop', 
     initialState : {
@@ -67,6 +68,11 @@ const shopSlices = createSlice({
             state.shop = [];
             state.totalAmount = 0; 
 
+        })
+        builders.addCase(logoutUser.fulfilled,(state,action) => {
+            state.username = ''; 
+            state.shop = [];
+            state.totalAmount = 0;
         })
     },
    })

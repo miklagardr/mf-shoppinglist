@@ -7,7 +7,7 @@ import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //import {deleteShoppingList , deleteAllShoppingList , addShoppingList} from '../store'
-import { addOrderList, deleteOrderList } from "../store";
+import { addOrderList, deleteOrderList , fetchOrderList } from "../store";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -18,6 +18,10 @@ function Cart() {
   const { user } = useSelector((state) => {
     return state.user;
   });
+
+  useEffect(() => {
+    dispatch(fetchOrderList(user.username));
+  }, []);
 
   const handleDelete = (product) => {
     const order = {

@@ -9,7 +9,7 @@ import Categories from './pages/Categories';
 import SingleProduct from './pages/SingleProduct';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchOrderList, fetchUser, logoutUser } from './store';
+import { fetchOrderList, fetchUser } from './store';
 import CategoriesListPage from './pages/CategoriesListPage';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
@@ -39,7 +39,7 @@ function App() {
     };
 
     fetchData();
-  }, [dispatch, login , logoutUser]);
+  }, [dispatch, login]);
 
 
   return (
