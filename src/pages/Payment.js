@@ -51,7 +51,7 @@ function Payment() {
       setAlert(true)
       setTimeout(() => {
         setAlert(false)
-      },2000)
+      },5000)
       return 
     }
     let order = {

@@ -43,7 +43,7 @@ function Products() {
     setAddedToCart(true);
     setTimeout(() => {
       setAddedToCart(false);
-    }, 1000);
+    }, 5000);
   };
 
   const handleSingleProduct = (productID) => {
@@ -74,7 +74,7 @@ function Products() {
   return (
     <div>
       <Navbar />
-      <div className='grid bg-gray-100 '>
+      <div className={`grid ${searchQuery && 'h-[600px]'}`}>
         <div className='flex justify-center text-center'>
           <span className='mx-2 text-gray-500 text-opacity-70'>Visible products : {visibleProduct}</span>
           <span className='mx-2 text-gray-500 text-opacity-70'>Total products : {products.length}</span>
@@ -84,12 +84,12 @@ function Products() {
           placeholder='Search products...'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className='my-4 mx-auto w-64 px-4 py-2 border rounded'
+          className='my-4 mx-auto w-64 px-4 py-2 border rounded h-10'
         />
         <div className='grid grid-cols-3 container gap-4'>{renderedProducts}</div>
         { visibleProduct < products.length &&  (
           <div className='text-center'>
-            <button onClick={() => setVisibleProduct((prev) => prev + 10)} className='bg-blue-500 text-white px-4 py-2 rounded my-2 w-44 mx-auto'>Load More</button>
+            <button onClick={() => setVisibleProduct((prev) => prev + 10)} className='bg-blue-500 text-white px-4 py-2 rounded my-2 w-44 mx-auto '>Load More</button>
           </div>
         )}
         <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 w-96'>

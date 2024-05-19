@@ -5,6 +5,8 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
 
 const CreditCard = ({setPay}) => {
+  const [alert , setAlert] = useState(false)
+  const [fill , setFill] = useState(false)
   const [state, setState] = useState({
     number: '',
     expiry: '',
@@ -31,9 +33,20 @@ const CreditCard = ({setPay}) => {
     e.preventDefault() 
     if(state.number && state.expiry && state.cvc && state.name) {
       setPay(true)
+      setAlert(true)
+    }else{
+      setFill(true)
+
     }
+    
 
   }
+  setTimeout(() => {
+    setAlert(false)
+    setFill(false)
+  }
+  , 5000)
+
  
 
   return (
@@ -86,6 +99,8 @@ const CreditCard = ({setPay}) => {
         />
         <button className='bg-blue-500 rounded-full w-fit p-3 flex justify-center' type="submit">Submit</button>
       </form>
+      {alert && <div className='bg-green-500 text-white p-3 rounded-lg mt-3'>Payment Successful</div>}
+      {fill && <div className='bg-red-500 text-white p-3 rounded-lg mt-3'>Please fill all fields</div>}
     </div>
   );
 }

@@ -48,7 +48,7 @@ function LoginPage() {
 
   setTimeout(() => {
     setAlerts(false)
-  },4000)
+  },5000)
 
   useEffect(() => {
     if(redirect){
