@@ -19,6 +19,18 @@ function UserOrders() {
   const handleOpenModal = () => {
     setDropdown(!dropDown);
   };
+  const getDate = (dateString) => {
+    var date = new Date(dateString);
+    var formattedDateTime = date.toLocaleString({ 
+      hour: '2-digit', 
+      minute: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    return formattedDateTime;
+  }
+
 
   // const renderedOrders = orders && orders.map((order) => {
   //   return (
@@ -79,7 +91,7 @@ function UserOrders() {
                     })}
                   </span>
                   <span>Total Price : ${order.orderlist.ordertotalprice}</span>
-                  <span>Order Date : {order.date}</span>
+                  <span>Order Date : {getDate(order.date)}</span>
                 </div>
               </div>
             );

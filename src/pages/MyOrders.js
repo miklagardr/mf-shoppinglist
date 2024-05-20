@@ -22,6 +22,19 @@ function MyOrders() {
 
 let renderedOrders; 
 
+ const getDate = (dateString) => {
+   var date = new Date(dateString);
+   var formattedDateTime = date.toLocaleString({ 
+     hour: '2-digit', 
+     minute: '2-digit',
+     day: '2-digit',
+     month: '2-digit',
+     year: 'numeric',
+   });
+   return formattedDateTime;
+ }
+
+
 if(orders) {
      renderedOrders = orders.map((order) => {
         return (
@@ -37,7 +50,7 @@ if(orders) {
           >
             <div className="flex justify-between p-3">
               <div>Order no : {order.orderid}</div>
-              <div>Date : {order.date}</div>
+              <div>Date : {getDate(order.date)}</div>
               <div className="flex items-center space-x-2">
                 <div>${order.orderlist.ordertotalprice} </div>
                 <div className="text-xl">
